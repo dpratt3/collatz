@@ -1,4 +1,18 @@
 button {
   background-color: lightgreen;
   border-radius: 3px;
+  margin-left: 3px;
+}
+
+input {
+  width: 33.333%;
+}
+
+html {
+  background-color: black;
+}
+
+h1,
+h3 {
+  color: white;
 }

@@ -36,7 +36,8 @@ function App() {
 
   return (
     <div>
-      <div>Collatz Conjecture!</div>
+      <h1>Collatz Conjecture!</h1>
+      <h3>Please enter an integer greater than 0.</h3>
       <input
         type="number"
         value={inputValue}
