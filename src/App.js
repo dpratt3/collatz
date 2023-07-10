@@ -53,6 +53,14 @@ function App() {
       </div>
 
       <div>{sequence.join(", ")}</div>
+
+      {/* The following stars are from: https://codepen.io/riley-pearce/pen/OJWPjZM */}
+      <div class="bg-animation">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+        <div id="stars4"></div>
+      </div>
     </div>
   );
 }
