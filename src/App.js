@@ -1,9 +1,8 @@
+import "./App.css";
 import React, { useState } from "react";
 
 function App() {
-  const [inputValue, setInputValue] = useState("");
-  const [sequence, setSequence] = useState([]);
-
+  // this is the function from the famous Collatz conjecture
   const collatz = (num) => {
     let values = [num];
     while (num !== 1) {
@@ -11,8 +10,20 @@ function App() {
       else num = 3 * num + 1;
       values.push(num);
     }
-    setSequence(values);
+
+    // allow collatz function to run before setSequence is defined
+    try {
+      setSequence(values);
+    } catch (error) {
+      console.error(error);
+      return values;
+    }
   };
+
+  // enter a default number and its sequence
+  const defaultNumber = 1711111;
+  const [inputValue, setInputValue] = useState(defaultNumber);
+  const [sequence, setSequence] = useState(collatz(defaultNumber));
 
   const handleCollatz = () => {
     const num = Number(inputValue);
