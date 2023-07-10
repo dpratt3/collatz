@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import TimeSeriesPlot from "./timeSeriesPlot";
 
 function App() {
-  // this is the function from the famous Collatz conjecture
   const collatz = (num) => {
     let values = [num];
     while (num !== 1) {
@@ -11,24 +10,22 @@ function App() {
       else num = 3 * num + 1;
       values.push(num);
     }
-
-    // allow collatz function to run before setSequence is defined
-    try {
-      setSequence(values);
-    } catch (error) {
-      console.error(error);
-      return values;
-    }
+    return values;
   };
 
-  // enter a default number and its sequence
   const defaultNumber = 113383;
   const [inputValue, setInputValue] = useState(defaultNumber);
   const [sequence, setSequence] = useState(collatz(defaultNumber));
+  const [error, setError] = useState("");
 
   const handleCollatz = () => {
     const num = Number(inputValue);
-    collatz(num);
+    if (num % 1 !== 0 || num < 1 || typeof num !== "number") {
+      setError("Invalid entry. Please enter an integer > 0");
+      return;
+    }
+    setError("");
+    setSequence(collatz(num));
   };
 
   const handleInputChange = (event) => {
@@ -46,6 +43,7 @@ function App() {
         min="1"
       />
       <button onClick={handleCollatz}>Submit</button>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <div>
         <TimeSeriesPlot
           key={sequence.toString()}
