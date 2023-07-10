@@ -8,12 +8,27 @@ button {
 
 input {
   width: 33.333%;
-  margin-bottom: 3px;
+  margin-bottom: 10px;
   z-index: 2;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px;
+  font-size: 14px;
+  background-color: #222;
+  color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  background-color: #333;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 html {
   background-color: black;
+  opacity: 0.97;
 }
 
 h1,
