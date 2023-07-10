@@ -47,7 +47,7 @@ function App() {
       />
       <button onClick={handleCollatz}>Submit</button>
       <div>
-        <TimeSeriesPlot />
+        <TimeSeriesPlot yValues={sequence} />
       </div>
 
       <div>{sequence.join(", ")}</div>

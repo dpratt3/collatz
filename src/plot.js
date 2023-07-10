@@ -1,16 +1,21 @@
 import React, { useEffect } from "react";
 import Plotly from "plotly.js/lib/core";
 
-const TimeSeriesPlot = () => {
+const countingArr = (length) => {
+  let arr = [];
+  for (let i = 1; i <= length; i += 1) {
+    arr.push(i);
+  }
+  return arr;
+};
+
+const TimeSeriesPlot = ({ yValues }) => {
   useEffect(() => {
+    const xArr = countingArr(yValues.length);
     const data = [
       {
-        x: [
-          "2013-10-04 22:23:00",
-          "2013-11-04 22:23:00",
-          "2013-12-04 22:23:00",
-        ],
-        y: [1, 3, 6],
+        x: xArr,
+        y: yValues,
         type: "scatter",
       },
     ];

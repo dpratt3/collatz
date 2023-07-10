@@ -2,10 +2,12 @@ button {
   background-color: lightgreen;
   border-radius: 3px;
   margin-left: 3px;
+  margin-bottom: 3px;
 }
 
 input {
   width: 33.333%;
+  margin-bottom: 3px;
 }
 
 html {
