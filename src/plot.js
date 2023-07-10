@@ -9,7 +9,7 @@ const countingArr = (length) => {
   return arr;
 };
 
-const TimeSeriesPlot = ({ yValues }) => {
+const TimeSeriesPlot = ({ yValues, value }) => {
   useEffect(() => {
     const xArr = countingArr(yValues.length);
     const data = [
@@ -20,7 +20,21 @@ const TimeSeriesPlot = ({ yValues }) => {
       },
     ];
 
-    Plotly.newPlot("myDiv", data);
+    // make value in question human readable
+    const formatVal = (val) =>
+      val.toLocaleString(undefined, { minimumFractionDigits: 0 });
+
+    const layout = {
+      title: "Collatz Conjecture Trajectory for " + formatVal(yValues[0]),
+      xaxis: {
+        title: "Step",
+      },
+      yaxis: {
+        title: "Value",
+      },
+    };
+
+    Plotly.newPlot("myDiv", data, layout);
   }, []);
 
   return <div id="myDiv" />;
