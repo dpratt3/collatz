@@ -25,7 +25,7 @@ const TimeSeriesPlot = ({ yValues, value }) => {
       val.toLocaleString(undefined, { minimumFractionDigits: 0 });
 
     const layout = {
-      title: "Collatz Conjecture Trajectory for " + formatVal(yValues[0]),
+      title: "Trajectory for " + formatVal(yValues[0]),
       xaxis: {
         title: "Step",
       },
@@ -34,7 +34,10 @@ const TimeSeriesPlot = ({ yValues, value }) => {
       },
     };
 
-    Plotly.newPlot("myDiv", data, layout);
+    // make graph responsive
+    var config = { responsive: true };
+
+    Plotly.newPlot("myDiv", data, layout, config);
   }, []);
 
   return <div id="myDiv" />;

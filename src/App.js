@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState } from "react";
-import TimeSeriesPlot from "./plot";
+import TimeSeriesPlot from "./timeSeriesPlot";
 
 function App() {
   // this is the function from the famous Collatz conjecture
@@ -22,7 +22,7 @@ function App() {
   };
 
   // enter a default number and its sequence
-  const defaultNumber = 1711111;
+  const defaultNumber = 113383;
   const [inputValue, setInputValue] = useState(defaultNumber);
   const [sequence, setSequence] = useState(collatz(defaultNumber));
 

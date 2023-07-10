@@ -18,4 +18,12 @@ h1,
 h3,
 div {
   color: white;
+  margin-top: 9px;
+}
+
+/* Responsive styles */
+@media screen and (min-width: 600px) {
+  input {
+    width: 33.333%;
+  }
 }
