@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Plotly from "plotly";
+import Plotly from "plotly.js/lib/core";
 
 const TimeSeriesPlot = () => {
   useEffect(() => {

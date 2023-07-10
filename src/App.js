@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useState } from "react";
+import TimeSeriesPlot from "./plot";
 
 function App() {
   // this is the function from the famous Collatz conjecture
@@ -45,6 +46,10 @@ function App() {
         min="1"
       />
       <button onClick={handleCollatz}>Submit</button>
+      <div>
+        <TimeSeriesPlot />
+      </div>
+
       <div>{sequence.join(", ")}</div>
     </div>
   );
