@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
 function App() {
+  const [inputValue, setInputValue] = useState("");
+  const [sequence, setSequence] = useState([]);
+
+  const collatz = (num) => {
+    let values = [num];
+    while (num !== 1) {
+      if (num % 2 === 0) num = num / 2;
+      else num = 3 * num + 1;
+      values.push(num);
+    }
+    setSequence(values);
+  };
+
+  const handleCollatz = () => {
+    const num = Number(inputValue);
+    collatz(num);
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>Collatz Conjecture!</div>
+      <input
+        type="number"
+        value={inputValue}
+        onChange={handleInputChange}
+        min="1"
+      />
+      <button onClick={handleCollatz}>Submit</button>
+      <div>{sequence.join(", ")}</div>
     </div>
   );
 }
