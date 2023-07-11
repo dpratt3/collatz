@@ -9,7 +9,10 @@ const countingArr = (length) => {
   return arr;
 };
 
-const TimeSeriesPlot = ({ yValues, value }) => {
+const TimeSeriesPlot = ({ yValues }) => {
+  const formatVal = (val) =>
+    val.toLocaleString(undefined, { minimumFractionDigits: 0 });
+
   useEffect(() => {
     const xArr = countingArr(yValues.length);
     const data = [
@@ -17,28 +20,39 @@ const TimeSeriesPlot = ({ yValues, value }) => {
         x: xArr,
         y: yValues,
         type: "scatter",
+        line: {
+          color: "#FFFFFF",
+        },
       },
     ];
 
-    // make value in question human readable
-    const formatVal = (val) =>
-      val.toLocaleString(undefined, { minimumFractionDigits: 0 });
-
     const layout = {
-      title: "Trajectory for " + formatVal(yValues[0]),
+      title: {
+        text: "Trajectory for " + formatVal(yValues[0]),
+        font: {
+          color: "#D3D3D3",
+        },
+      },
       xaxis: {
         title: "Step",
+        color: "#FFFFFF",
+        gridcolor: "#FFFFFF", // Gridlines color
       },
       yaxis: {
         title: "Value",
+        color: "#FFFFFF",
+        gridcolor: "#FFFFFF", // Gridlines color
       },
+      plot_bgcolor: "rgba(0, 0, 0, 0)", // Transparent plot background
+      paper_bgcolor: "rgba(0, 0, 0, 0.7)", // Semi-transparent paper background
     };
 
-    // make graph responsive
-    var config = { responsive: true };
+    const config = {
+      responsive: true, // Make the plot responsive
+    };
 
     Plotly.newPlot("myDiv", data, layout, config);
-  }, []);
+  }, [yValues]);
 
   return <div id="myDiv" />;
 };
