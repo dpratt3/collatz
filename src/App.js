@@ -56,7 +56,18 @@ function App() {
         <div id="stars4"></div>
       </div>
       <h1>Collatz Conjecture!</h1>
-      <h4>Please enter an integer between 0 and 9,007,199,254,740,992.</h4>
+      <h4>
+        Please enter an integer between 0 and 9,007,199,254,740,992.
+        {/* Add an empty space to the hyperlink that's not hyperlinked*/}
+        <span style={{ textDecoration: "none" }}> </span>{" "}
+        <a
+          href="https://en.wikipedia.org/wiki/Collatz_conjecture"
+          style={{ color: "#4caf50" }}
+        >
+          Learn more.
+        </a>
+      </h4>
+
       <input
         type="string"
         value={inputValue}
