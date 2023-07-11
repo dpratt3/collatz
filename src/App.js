@@ -23,7 +23,7 @@ function App() {
     val.toLocaleString(undefined, { minimumFractionDigits: 0 });
 
   const handleCollatz = () => {
-    const num = Number(inputValue.replaceAll(",", ""));
+    const num = Number(inputValue.toString().replaceAll(",", ""));
 
     if (
       num % 1 !== 0 ||
