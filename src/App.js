@@ -51,7 +51,7 @@ function App() {
       />
       <button onClick={handleCollatz}>Submit</button>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <div>
+      <div style={{ opacity: 0.95 }}>
         <TimeSeriesPlot
           key={sequence.toString()}
           yValues={sequence}
