@@ -24,7 +24,7 @@ function App() {
 
   const handleCollatz = () => {
     const num = Number(inputValue.replaceAll(",", ""));
-    console.log(inputValue, "<--------------------------");
+
     if (
       num % 1 !== 0 ||
       num < 1 ||
@@ -33,7 +33,8 @@ function App() {
     ) {
       setError(
         "Invalid entry. Please enter an integer between 0 and " +
-          formatVal(Number.MAX_SAFE_INTEGER)
+          formatVal(Number.MAX_SAFE_INTEGER) +
+          "."
       );
       return;
     }
@@ -55,7 +56,7 @@ function App() {
         <div id="stars4"></div>
       </div>
       <h1>Collatz Conjecture!</h1>
-      <h4>Please enter an integer greater than 0.</h4>
+      <h4>Please enter an integer between 0 and 9,007,199,254,740,992.</h4>
       <input
         type="string"
         value={inputValue}
