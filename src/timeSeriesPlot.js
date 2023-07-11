@@ -43,6 +43,8 @@ const TimeSeriesPlot = ({ yValues }) => {
           color: "rgba(221, 221, 221, 0.7)",
         },
         tickcolor: "#FFFFFF", // Set tick color to white
+        gridcolor: "#FFFFFF",
+        gridwidth: 0.5, // Increase grid width for better visibility
       },
       yaxis: {
         title: "Value",
@@ -50,20 +52,14 @@ const TimeSeriesPlot = ({ yValues }) => {
         tickfont: {
           family: "Arial, sans-serif",
           size: 12,
-          color: "rgba(221, 221, 221, 0.7)",
+          color: "#FFFFFFF",
         },
         tickcolor: "#FFFFFF", // Set tick color to white
+        gridcolor: "#FFFFFF",
+        gridwidth: 0.5, // Increase grid width for better visibility
       },
       plot_bgcolor: "rgba(0, 0, 0, 0)",
       paper_bgcolor: "rgba(0, 0, 0, 0.7)",
-      xaxis: {
-        gridcolor: "#FFFFFF",
-        gridwidth: 1, // Increase grid width for better visibility
-      },
-      yaxis: {
-        gridcolor: "#FFFFFF",
-        gridwidth: 1, // Increase grid width for better visibility
-      },
     };
 
     const config = {
@@ -71,7 +67,7 @@ const TimeSeriesPlot = ({ yValues }) => {
     };
 
     Plotly.newPlot("myDiv", data, layout, config);
-  }, []);
+  }, [yValues]);
 
   return <div id="myDiv" />;
 };
