@@ -17,13 +17,16 @@ const TimeSeriesPlot = ({ yValues, logBool }) => {
     // allow for log transform
     let logTransY;
     let logTransTitle;
+    let yTitle;
 
     if (logBool) {
       logTransY = yValues.map((y) => Math.log(y));
       logTransTitle = "Log-Transformed Trajectory for " + formatVal(yValues[0]);
+      yTitle = "Log(Value)";
     } else {
       logTransY = yValues;
       logTransTitle = "Trajectory for " + formatVal(yValues[0]);
+      yTitle = "Value";
     }
 
     const xArr = countingArr(yValues.length);
@@ -60,7 +63,7 @@ const TimeSeriesPlot = ({ yValues, logBool }) => {
         gridwidth: 0.25, // Increase grid width for better visibility
       },
       yaxis: {
-        title: "Value",
+        title: yTitle,
         color: "#FFFFFF",
         tickfont: {
           family: "Arial, sans-serif",

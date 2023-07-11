@@ -23,6 +23,15 @@ button:focus {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Allow for conditional rendering of button classes */
+.red-button {
+  background-color: red;
+}
+
+.red-button:hover {
+  background-color: rgb(216, 8, 8);
+}
+
 input {
   width: 33.333%;
   margin-bottom: 10px;

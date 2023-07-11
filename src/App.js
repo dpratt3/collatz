@@ -77,8 +77,13 @@ function App() {
         min="1"
       />
       <button onClick={handleCollatz}>Submit</button>
+      <button
+        className={logTrans ? "red-button" : "button"}
+        onClick={handleLogTrans}
+      >
+        Log Transform
+      </button>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <button onClick={handleLogTrans}>Log Transform</button>
       <div style={{ opacity: 0.95 }}>
         <TimeSeriesPlot
           key={sequence.toString()}
