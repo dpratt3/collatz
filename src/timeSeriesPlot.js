@@ -21,7 +21,7 @@ const TimeSeriesPlot = ({ yValues, logBool }) => {
 
     if (logBool) {
       logTransY = yValues.map((y) => Math.log(y));
-      logTransTitle = "Log-Transformed Trajectory for " + formatVal(yValues[0]);
+      logTransTitle = "Log Trajectory for " + formatVal(yValues[0]);
       yTitle = "Log(Value)";
     } else {
       logTransY = yValues;
