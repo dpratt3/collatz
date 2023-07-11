@@ -23,7 +23,8 @@ function App() {
     val.toLocaleString(undefined, { minimumFractionDigits: 0 });
 
   const handleCollatz = () => {
-    const num = Number(inputValue);
+    const num = Number(inputValue.replaceAll(",", ""));
+    console.log(inputValue, "<--------------------------");
     if (
       num % 1 !== 0 ||
       num < 1 ||
@@ -56,7 +57,7 @@ function App() {
       <h1>Collatz Conjecture!</h1>
       <h4>Please enter an integer greater than 0.</h4>
       <input
-        type="number"
+        type="string"
         value={inputValue}
         onChange={handleInputChange}
         min="1"
