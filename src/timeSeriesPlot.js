@@ -49,6 +49,12 @@ const TimeSeriesPlot = ({ yValues, logBool }) => {
           color: "#FFFFFF",
           weight: "bold",
         },
+        // Wrap the title text
+        xref: "paper",
+        x: 0.5,
+        xanchor: "center",
+        yanchor: "top",
+        wraplength: 200,
       },
       xaxis: {
         title: "Step",
