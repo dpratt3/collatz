@@ -32,6 +32,10 @@ function App() {
     setInputValue(event.target.value);
   };
 
+  // format values in final sequence
+  const formatVal = (val) =>
+    val.toLocaleString(undefined, { minimumFractionDigits: 0 });
+
   return (
     <div>
       {/* The following stars are from: https://codepen.io/riley-pearce/pen/OJWPjZM */}
@@ -58,8 +62,10 @@ function App() {
           value={inputValue}
         />
       </div>
-
-      <div>{sequence.join(", ")}</div>
+      {/* show sequence of numbers  */}
+      <div style={{ color: "rgba(215, 137, 10, 1)" }}>
+        {sequence.map((x) => formatVal(x)).join(" → ")}
+      </div>
     </div>
   );
 }
