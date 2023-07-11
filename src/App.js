@@ -17,6 +17,7 @@ function App() {
   const [inputValue, setInputValue] = useState(defaultNumber);
   const [sequence, setSequence] = useState(collatz(defaultNumber));
   const [error, setError] = useState("");
+  const [logTrans, setLogTrans] = useState(false);
 
   // format values in final sequence
   const formatVal = (val) =>
@@ -46,6 +47,8 @@ function App() {
     setInputValue(event.target.value);
   };
 
+  const handleLogTrans = () => setLogTrans(!logTrans);
+
   return (
     <div>
       {/* The following stars are from: https://codepen.io/riley-pearce/pen/OJWPjZM */}
@@ -67,7 +70,6 @@ function App() {
           Learn more.
         </a>
       </h4>
-
       <input
         type="string"
         value={inputValue}
@@ -76,16 +78,19 @@ function App() {
       />
       <button onClick={handleCollatz}>Submit</button>
       {error && <p style={{ color: "red" }}>{error}</p>}
+      <button onClick={handleLogTrans}>Log Transform</button>
       <div style={{ opacity: 0.95 }}>
         <TimeSeriesPlot
           key={sequence.toString()}
           yValues={sequence}
           value={inputValue}
+          logBool={logTrans}
         />
       </div>
       {/* show sequence of numbers  */}
       <div style={{ color: "rgba(215, 137, 10, 1)" }}>
-        {sequence.map((x) => formatVal(x)).join(" → ")}
+        {!logTrans && sequence.map((y) => formatVal(y)).join(" → ")}
+        {logTrans && sequence.map((y) => formatVal(Math.log(y))).join(" → ")}
       </div>
     </div>
   );

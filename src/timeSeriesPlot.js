@@ -9,16 +9,28 @@ const countingArr = (length) => {
   return arr;
 };
 
-const TimeSeriesPlot = ({ yValues }) => {
+const TimeSeriesPlot = ({ yValues, logBool }) => {
   const formatVal = (val) =>
     val.toLocaleString(undefined, { minimumFractionDigits: 0 });
 
   useEffect(() => {
+    // allow for log transform
+    let logTransY;
+    let logTransTitle;
+
+    if (logBool) {
+      logTransY = yValues.map((y) => Math.log(y));
+      logTransTitle = "Log-Transformed Trajectory for " + formatVal(yValues[0]);
+    } else {
+      logTransY = yValues;
+      logTransTitle = "Trajectory for " + formatVal(yValues[0]);
+    }
+
     const xArr = countingArr(yValues.length);
     const data = [
       {
         x: xArr,
-        y: yValues,
+        y: logTransY,
         type: "scatter",
         line: {
           color: "rgba(215, 137, 10, 1)",
@@ -29,7 +41,7 @@ const TimeSeriesPlot = ({ yValues }) => {
 
     const layout = {
       title: {
-        text: "Trajectory for " + formatVal(yValues[0]),
+        text: logTransTitle,
         font: {
           color: "#FFFFFF",
           weight: "bold",
@@ -82,7 +94,7 @@ const TimeSeriesPlot = ({ yValues }) => {
     };
 
     Plotly.newPlot("myDiv", data, layout, config);
-  }, [yValues]);
+  }, [yValues, logBool]);
 
   return <div id="myDiv" />;
 };
