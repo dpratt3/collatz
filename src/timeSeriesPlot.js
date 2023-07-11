@@ -21,7 +21,7 @@ const TimeSeriesPlot = ({ yValues }) => {
         y: yValues,
         type: "scatter",
         line: {
-          color: ["rgba(255, 165, 0, 1)"],
+          color: "rgba(215, 137, 10, 1)",
           width: 2,
         },
       },
@@ -31,7 +31,8 @@ const TimeSeriesPlot = ({ yValues }) => {
       title: {
         text: "Trajectory for " + formatVal(yValues[0]),
         font: {
-          color: "#D3D3D3",
+          color: "#FFFFFF",
+          weight: "bold",
         },
       },
       xaxis: {
@@ -64,6 +65,7 @@ const TimeSeriesPlot = ({ yValues }) => {
 
     const config = {
       responsive: true,
+      displaylogo: false,
       modeBarButtonsToRemove: [
         "sendDataToCloud",
         "pan2d",
