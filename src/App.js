@@ -42,7 +42,7 @@ function App() {
         <div id="stars4"></div>
       </div>
       <h1>Collatz Conjecture!</h1>
-      <h3>Please enter an integer greater than 0.</h3>
+      <h4>Please enter an integer greater than 0.</h4>
       <input
         type="number"
         value={inputValue}
