@@ -22,7 +22,7 @@ const TimeSeriesPlot = ({ yValues }) => {
         type: "scatter",
         line: {
           color: "rgba(215, 137, 10, 1)",
-          width: 2,
+          width: 4,
         },
       },
     ];
