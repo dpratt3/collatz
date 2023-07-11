@@ -18,10 +18,22 @@ function App() {
   const [sequence, setSequence] = useState(collatz(defaultNumber));
   const [error, setError] = useState("");
 
+  // format values in final sequence
+  const formatVal = (val) =>
+    val.toLocaleString(undefined, { minimumFractionDigits: 0 });
+
   const handleCollatz = () => {
     const num = Number(inputValue);
-    if (num % 1 !== 0 || num < 1 || typeof num !== "number") {
-      setError("Invalid entry. Please enter an integer > 0");
+    if (
+      num % 1 !== 0 ||
+      num < 1 ||
+      typeof num !== "number" ||
+      num > Number.MAX_SAFE_INTEGER
+    ) {
+      setError(
+        "Invalid entry. Please enter an integer between 0 and " +
+          formatVal(Number.MAX_SAFE_INTEGER)
+      );
       return;
     }
     setError("");
@@ -31,10 +43,6 @@ function App() {
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
-
-  // format values in final sequence
-  const formatVal = (val) =>
-    val.toLocaleString(undefined, { minimumFractionDigits: 0 });
 
   return (
     <div>
