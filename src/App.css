@@ -70,9 +70,9 @@ div {
   input {
     width: 33.333%;
   }
-  .plotly-title {
-    white-space: normal;
-    word-break: break-word;
+  .plotly-graph-div .main-svg .gtitle .title-text {
+    white-space: normal !important;
+    word-break: break-word !important;
   }
 }
 
