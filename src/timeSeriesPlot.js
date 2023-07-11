@@ -21,7 +21,8 @@ const TimeSeriesPlot = ({ yValues }) => {
         y: yValues,
         type: "scatter",
         line: {
-          color: "#FFFFFF",
+          color: ["rgba(255, 165, 0, 1)"],
+          width: 2,
         },
       },
     ];
@@ -36,23 +37,41 @@ const TimeSeriesPlot = ({ yValues }) => {
       xaxis: {
         title: "Step",
         color: "#FFFFFF",
-        gridcolor: "#FFFFFF", // Gridlines color
+        tickfont: {
+          family: "Arial, sans-serif",
+          size: 12,
+          color: "rgba(221, 221, 221, 0.7)",
+        },
+        tickcolor: "#FFFFFF", // Set tick color to white
       },
       yaxis: {
         title: "Value",
         color: "#FFFFFF",
-        gridcolor: "#FFFFFF", // Gridlines color
+        tickfont: {
+          family: "Arial, sans-serif",
+          size: 12,
+          color: "rgba(221, 221, 221, 0.7)",
+        },
+        tickcolor: "#FFFFFF", // Set tick color to white
       },
-      plot_bgcolor: "rgba(0, 0, 0, 0)", // Transparent plot background
-      paper_bgcolor: "rgba(0, 0, 0, 0.7)", // Semi-transparent paper background
+      plot_bgcolor: "rgba(0, 0, 0, 0)",
+      paper_bgcolor: "rgba(0, 0, 0, 0.7)",
+      xaxis: {
+        gridcolor: "#FFFFFF",
+        gridwidth: 1, // Increase grid width for better visibility
+      },
+      yaxis: {
+        gridcolor: "#FFFFFF",
+        gridwidth: 1, // Increase grid width for better visibility
+      },
     };
 
     const config = {
-      responsive: true, // Make the plot responsive
+      responsive: true,
     };
 
     Plotly.newPlot("myDiv", data, layout, config);
-  }, [yValues]);
+  }, []);
 
   return <div id="myDiv" />;
 };
