@@ -1,8 +1,18 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import TimeSeriesPlot from "./timeSeriesPlot";
+import ReactGA from 'react-ga4';
 
 function App() {
+  ReactGA.initialize('G-ND7GZGG49J');
+
+  // Example event tracking
+  ReactGA.event({
+    action: 'page_view',
+    category: 'Homepage',
+    label: 'Visited Homepage'
+  });
+
   const collatz = (num) => {
     let values = [num];
     while (num !== 1) {
@@ -45,13 +55,27 @@ function App() {
     }
     setError("");
     setSequence(collatz(num));
+    
+    ReactGA.event({
+      action: 'click',
+      category: 'Button',
+      label: 'Submit Button Clicked'
+    });
   };
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
-  const handleLogTrans = () => setLogTrans(!logTrans);
+  const handleLogTrans = () => {
+    setLogTrans(!logTrans);
+    
+    ReactGA.event({
+      action: 'click',
+      category: 'Button',
+      label: 'Log Transform Button Clicked'
+    });
+  };
 
   return (
     <div>
