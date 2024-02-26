@@ -72,7 +72,8 @@ function App() {
           style={{ color: "#4caf50" }}
         >
           Learn more.
-        </a>
+        </a>{" "}
+        Visit <a href="https://www.midnightmechanism.com" style={{ color: "#4caf50" }}>Midnight Mechanism</a>.
       </h4>
       <input
         type="string"
