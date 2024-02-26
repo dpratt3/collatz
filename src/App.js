@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TimeSeriesPlot from "./timeSeriesPlot";
 
 function App() {
@@ -12,6 +12,10 @@ function App() {
     }
     return values;
   };
+
+  useEffect(() => {
+    document.title = "Collatz Conjecture";
+  }, []);
 
   const defaultNumber = 113383;
   const [inputValue, setInputValue] = useState(defaultNumber);
