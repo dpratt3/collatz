@@ -27,7 +27,7 @@ function App() {
     document.title = "Collatz Conjecture";
   }, []);
 
-  const defaultNumber = 113383;
+  const defaultNumber = 670617279;
   const [inputValue, setInputValue] = useState(defaultNumber);
   const [sequence, setSequence] = useState(collatz(defaultNumber));
   const [error, setError] = useState("");
