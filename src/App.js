@@ -1,7 +1,10 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import TimeSeriesPlot from "./timeSeriesPlot";
+import { useLocation } from "react-router-dom"; // Import useLocation hook
 import ReactGA from 'react-ga4';
+
+const useQuery = () => new URLSearchParams(useLocation().search); // Custom hook to get query parameters
 
 function App() {
   ReactGA.initialize('G-ND7GZGG49J');
@@ -27,7 +30,8 @@ function App() {
     document.title = "Collatz Conjecture";
   }, []);
 
-  const defaultNumber = 670617279;
+  const query = useQuery();
+  const defaultNumber = parseInt(query.get("number")) || 670617279;
   const [inputValue, setInputValue] = useState(defaultNumber);
   const [sequence, setSequence] = useState(collatz(defaultNumber));
   const [error, setError] = useState("");
