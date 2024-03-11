@@ -18,7 +18,7 @@ def serve_css(filename):
     return send_from_directory('../frontend/build/static/css', filename)
 
 # Your other Flask routes and APIs go here
-@app.route('/collatz/<int:number>')
+@app.route('/api/collatz/<int:number>')
 def calculate_collatz(number):
     sequence = collatz(number)
     return jsonify(sequence)

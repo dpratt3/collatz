@@ -58,7 +58,7 @@ function App() {
       return;
     }
     setError("");
-    fetch(`/collatz/${num}`)
+    fetch(`/api/collatz/${num}`)
       .then(response => response.json())
       .then(data => {
         setSequence(data);
