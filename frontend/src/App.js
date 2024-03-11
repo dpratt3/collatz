@@ -41,9 +41,35 @@ function App() {
   const formatVal = (val) =>
     val.toLocaleString(undefined, { minimumFractionDigits: 0 });
 
+  // const handleCollatz = () => {
+  //   const num = Number(inputValue.toString().replaceAll(",", ""));
+
+  //   if (
+  //     num % 1 !== 0 ||
+  //     num < 1 ||
+  //     typeof num !== "number" ||
+  //     num > Number.MAX_SAFE_INTEGER
+  //   ) {
+  //     setError(
+  //       "Invalid entry. Please enter an integer between 0 and " +
+  //         formatVal(Number.MAX_SAFE_INTEGER) +
+  //         "."
+  //     );
+  //     return;
+  //   }
+  //   setError("");
+  //   setSequence(collatz(num));
+    
+  //   ReactGA.event({
+  //     action: 'click',
+  //     category: 'Button',
+  //     label: 'Submit Button Clicked'
+  //   });
+  // };
+
   const handleCollatz = () => {
     const num = Number(inputValue.toString().replaceAll(",", ""));
-
+  
     if (
       num % 1 !== 0 ||
       num < 1 ||
@@ -58,7 +84,15 @@ function App() {
       return;
     }
     setError("");
-    setSequence(collatz(num));
+    fetch(`/collatz/${num}`)
+      .then(response => response.json())
+      .then(data => {
+        setSequence(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        setError("An error occurred while fetching the Collatz sequence.");
+      });
     
     ReactGA.event({
       action: 'click',
@@ -67,6 +101,7 @@ function App() {
     });
   };
 
+  
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };

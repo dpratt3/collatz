@@ -1,5 +1,5 @@
-import sys
-import argparse
+# import sys
+# import argparse
 
 def collatz(num):
     values = [num]
@@ -13,17 +13,17 @@ def collatz(num):
    
     return values
 
-def main():
-    parser = argparse.ArgumentParser(description='Calculate Collatz Conjecture')
-    parser.add_argument('number', type=int, help='The starting number for the Collatz Conjecture')
+# def main():
+#     parser = argparse.ArgumentParser(description='Calculate Collatz Conjecture')
+#     parser.add_argument('number', type=int, help='The starting number for the Collatz Conjecture')
 
-    args = parser.parse_args()
+#     args = parser.parse_args()
     
-    sequence = collatz(args.number)
+#     sequence = collatz(args.number)
 
-    print("Length:", len(sequence))
+#     print("Length:", len(sequence))
     
-    return sequence
+#     return sequence
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
