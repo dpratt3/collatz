@@ -22,7 +22,8 @@ def main():
     sequence = collatz(args.number)
 
     print("Length:", len(sequence))
-    # print("Sequence:", sequence)
+    
+    return sequence
 
 if __name__ == "__main__":
     main()
