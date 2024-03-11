@@ -1,7 +1,8 @@
 from flask import Flask, send_from_directory, jsonify
 from scripts.collatz import collatz
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend/public')
 
 # Serve React static files
 @app.route('/')
@@ -21,6 +22,6 @@ def serve_css(filename):
 def calculate_collatz(number):
     sequence = collatz(number)
     return jsonify(sequence)
-
+    
 if __name__ == '__main__':
     app.run(debug=True)
