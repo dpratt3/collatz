@@ -41,32 +41,6 @@ function App() {
   const formatVal = (val) =>
     val.toLocaleString(undefined, { minimumFractionDigits: 0 });
 
-  // const handleCollatz = () => {
-  //   const num = Number(inputValue.toString().replaceAll(",", ""));
-
-  //   if (
-  //     num % 1 !== 0 ||
-  //     num < 1 ||
-  //     typeof num !== "number" ||
-  //     num > Number.MAX_SAFE_INTEGER
-  //   ) {
-  //     setError(
-  //       "Invalid entry. Please enter an integer between 0 and " +
-  //         formatVal(Number.MAX_SAFE_INTEGER) +
-  //         "."
-  //     );
-  //     return;
-  //   }
-  //   setError("");
-  //   setSequence(collatz(num));
-    
-  //   ReactGA.event({
-  //     action: 'click',
-  //     category: 'Button',
-  //     label: 'Submit Button Clicked'
-  //   });
-  // };
-
   const handleCollatz = () => {
     const num = Number(inputValue.toString().replaceAll(",", ""));
   
