@@ -2,7 +2,7 @@ from flask import Flask, send_from_directory, jsonify
 from scripts.collatz import collatz
 import os
 
-app = Flask(__name__, static_folder='../frontend/public')
+app = Flask(__name__, static_folder='static')
 
 # Serve React static files
 @app.route('/')
