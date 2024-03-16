@@ -127,7 +127,7 @@ function App() {
       </button>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div style={{ opacity: 0.95 }}>
-        <TimeSeriesPlot
+        sequence && <TimeSeriesPlot
           key={sequence.toString()}
           yValues={sequence}
           value={inputValue}
