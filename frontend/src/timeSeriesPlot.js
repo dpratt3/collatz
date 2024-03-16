@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Plotly from "plotly.js/lib/core";
 
 const countingArr = (length) => {
@@ -10,9 +10,35 @@ const countingArr = (length) => {
 };
 
 const TimeSeriesPlot = ({ yValues, logBool }) => {
+  const [logs, setLogs] = useState([]);
+  
   const formatVal = (val) =>
     val.toLocaleString(undefined, { minimumFractionDigits: 0 });
 
+  // Fetch logged valued from backend using Python
+  useEffect(() => {
+    fetch(`/api/logarithm`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ seq: yValues })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      setLogs(data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }, [yValues]);
+  
+  
   useEffect(() => {
     // allow for log transform
     let logTransY;
@@ -20,7 +46,7 @@ const TimeSeriesPlot = ({ yValues, logBool }) => {
     let yTitle;
 
     if (logBool) {
-      logTransY = yValues.map((y) => Math.log(y));
+      logTransY = logs
       logTransTitle = "Log Trajectory for " + formatVal(yValues[0]);
       yTitle = "Log(Value)";
     } else {
@@ -103,7 +129,7 @@ const TimeSeriesPlot = ({ yValues, logBool }) => {
     };
 
     Plotly.newPlot("myDiv", data, layout, config);
-  }, [yValues, logBool]);
+  }, [yValues, logBool, logs]);
 
   return <div id="myDiv" />;
 };

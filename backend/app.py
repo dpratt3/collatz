@@ -1,6 +1,7 @@
-from flask import Flask, send_from_directory, jsonify
+from flask import Flask, request, send_from_directory, jsonify
 from scripts.collatz import collatz
 import os
+import math
 
 app = Flask(__name__, static_folder='static')
 
@@ -22,6 +23,16 @@ def serve_css(filename):
 def calculate_collatz(number):
     sequence = collatz(number)
     return jsonify(sequence)
+
+@app.route('/api/logarithm', methods=['POST'])
+def log_sequence():
+    data = request.json
+    seq = data.get('seq')
+    if not seq:
+        return jsonify(error="Sequence parameter 'seq' is required"), 400
+    
+    log_seq = [math.log(x, 10) for x in seq]
+    return jsonify(log_seq)
     
 if __name__ == '__main__':
     app.run(debug=True)
