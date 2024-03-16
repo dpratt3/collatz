@@ -2,18 +2,18 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import TimeSeriesPlot from "./timeSeriesPlot";
 import { useLocation } from "react-router-dom"; // Import useLocation hook
-import ReactGA from 'react-ga4';
+import ReactGA from "react-ga4";
 
 const useQuery = () => new URLSearchParams(useLocation().search); // Custom hook to get query parameters
 
 function App() {
-  ReactGA.initialize('G-ND7GZGG49J');
+  ReactGA.initialize("G-ND7GZGG49J");
 
   // Example event tracking
   ReactGA.event({
-    action: 'page_view',
-    category: 'Homepage',
-    label: 'Visited Homepage'
+    action: "page_view",
+    category: "Homepage",
+    label: "Visited Homepage",
   });
 
   const collatz = (num) => {
@@ -43,7 +43,7 @@ function App() {
 
   const handleCollatz = () => {
     const num = Number(inputValue.toString().replaceAll(",", ""));
-  
+
     if (
       num % 1 !== 0 ||
       num < 1 ||
@@ -59,34 +59,33 @@ function App() {
     }
     setError("");
     fetch(`/api/collatz/${num}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setSequence(data);
       })
-      .catch(error => {
-        console.error('Error:', error);
+      .catch((error) => {
+        console.error("Error:", error);
         setError("An error occurred while fetching the Collatz sequence.");
       });
-    
+
     ReactGA.event({
-      action: 'click',
-      category: 'Button',
-      label: 'Submit Button Clicked'
+      action: "click",
+      category: "Button",
+      label: "Submit Button Clicked",
     });
   };
 
-  
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
   const handleLogTrans = () => {
     setLogTrans(!logTrans);
-    
+
     ReactGA.event({
-      action: 'click',
-      category: 'Button',
-      label: 'Log Transform Button Clicked'
+      action: "click",
+      category: "Button",
+      label: "Log Transform Button Clicked",
     });
   };
 
@@ -110,7 +109,14 @@ function App() {
         >
           Learn more.
         </a>{" "}
-        Visit <a href="https://www.midnightmechanism.com" style={{ color: "#4caf50" }}>Midnight Mechanism</a>.
+        Visit{" "}
+        <a
+          href="https://www.midnightmechanism.com"
+          style={{ color: "#4caf50" }}
+        >
+          Midnight Mechanism
+        </a>
+        .
       </h4>
       <input
         type="string"
@@ -127,12 +133,14 @@ function App() {
       </button>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div style={{ opacity: 0.95 }}>
-        sequence && <TimeSeriesPlot
-          key={sequence.toString()}
-          yValues={sequence}
-          value={inputValue}
-          logBool={logTrans}
-        />
+        {sequence && (
+          <TimeSeriesPlot
+            key={sequence.toString()}
+            yValues={sequence}
+            value={inputValue}
+            logBool={logTrans}
+          />
+        )}
       </div>
       {/* show sequence of numbers  */}
       <div style={{ color: "rgba(215, 137, 10, 1)" }}>
