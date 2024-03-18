@@ -6,6 +6,16 @@ import ReactGA from "react-ga4";
 
 const useQuery = () => new URLSearchParams(useLocation().search); // Custom hook to get query parameters
 
+const collatz = (num) => {
+  let values = [num];
+  while (num !== 1) {
+    if (num % 2 === 0) num = num / 2;
+    else num = 3 * num + 1;
+    values.push(num);
+  }
+  return values;
+};
+
 function App() {
   ReactGA.initialize("G-ND7GZGG49J");
 
@@ -16,16 +26,6 @@ function App() {
     label: "Visited Homepage",
   });
 
-  const collatz = (num) => {
-    let values = [num];
-    while (num !== 1) {
-      if (num % 2 === 0) num = num / 2;
-      else num = 3 * num + 1;
-      values.push(num);
-    }
-    return values;
-  };
-
   useEffect(() => {
     document.title = "Collatz Conjecture";
   }, []);
@@ -33,7 +33,24 @@ function App() {
   const query = useQuery();
   const defaultNumber = parseInt(query.get("number")) || 670617279;
   const [inputValue, setInputValue] = useState(defaultNumber);
-  const [sequence, setSequence] = useState(collatz(defaultNumber));
+  const [sequence, setSequence] = useState([defaultNumber]);
+
+  useEffect(() => {
+    try {
+      console.log(defaultNumber, "<----------------------- this is the default number");
+      console.log(collatz(defaultNumber), "<--------------------- here is the sequence in question");
+      const newSequence = collatz(defaultNumber);
+      setSequence(newSequence);
+      console.log(sequence); // Log the newSequence
+    } catch (error) {
+      console.error('Error in useEffect:', error);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(sequence); // Log the updated sequence
+  }, [sequence]);
+    
   const [error, setError] = useState("");
   const [logTrans, setLogTrans] = useState(false);
 
